@@ -1,0 +1,13 @@
+all: run.exe
+
+run.exe: main.o matrix.o
+	g++ -o run.exe main.o matrix.o	
+
+main.o: main.cpp 
+	g++ -c main.cpp
+
+matrix.o: main.cpp
+	g++ -c matrix.cpp
+
+clean:
+	rm -rf *o
