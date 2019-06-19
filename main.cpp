@@ -1,121 +1,108 @@
 #include <iostream>
-#include <typeinfo>
+#include <fstream>
 #include "Matrix.hpp"
 using namespace std;
-int main()
+int main(int argc, char *argv[])
 {
-
-    cout<<"Enter the data type of your the matrix"<<endl;
+    ifstream f(argv[1]);
+    ofstream g("output.txt");
+    g << "Data type of your the matrix is ";
     string type;
-    fflush(stdin);
-    cin >> type;
-
-    if(type == "int"){
-
+    f >> type;
+    g << type << endl;
+    if(type == "int")
+    {
         int nrL;
         int nrC;
         int **data;
-
-
         Matrix<int> mat; // Test Constructor fara parametrii
 
-        cin>>mat;  // Test operator <<
-        cout<< "Matrix 2 got initialized with Matrix 1 values"<<endl;
+        f >> mat;  // Test operator <<
+        g << "Matrix 2 got initialized with Matrix 1 values\n";
 
         Matrix<int> matInverse,matTranspus,matAdd,matMulti;
         Matrix<int> mat2(mat); // Test constructor copiere
-        cout<<"Matrix 1: "<<endl;
-        cout <<mat;
+        g << "\nMatrix 1: \n";
+        g << mat << endl;
 
-        cout << "Inverse of Matrix 1"<<endl;
+        g << "Inverse of Matrix 1\n";
         matInverse=mat.inverse();  // Test inverse of matrixnt
-        cout<< matInverse<<endl;
-        cout << "Matrix1 * Matrix2 = "<<endl;
+        g << matInverse << endl;
+        g << "Matrix1 * Matrix2 = \n";
         matMulti=mat*mat2;  //Test operator *
-        cout<< matMulti<<endl;
-        cout << "Matrix1 + Matrix2 ="<<endl;
+        g << matMulti << endl;
+        g << "Matrix1 + Matrix2 =\n";
         matAdd=mat+mat2;   //Test operator +
-        cout<<matAdd<< endl;
+        g << matAdd << endl;
 
-        cout<< "Enter values for a new matrix of type int"<<endl;
-        cout<< "number of lines :"; cin >> nrL;
-        cout<< "number of columns:"; cin >> nrC;
+        f >> nrL;
+        f >> nrC;
+
         data= new int* [nrL];
         for(int i = 0; i < nrL; i++)
             data[i] = new int [nrC];
+
         for(int i = 0; i < nrL; i++ )
-        {
-            for(int j = 0; j < nrC; j++){
-                cout<<"Matrix["<<i<<"]["<<j<<"]";
-                cin>>data[i][j];
-            }
-            cout<< endl;
-        }
+            for(int j = 0; j < nrC; j++)
+                f>>data[i][j];
+
+
         Matrix<int> mat3(nrL, nrC,data); // Test constructor cu parametrii
-        cout<<"Matrix 3 transpus:" <<endl;
+        g << "Matrix 3 transpus:\n";
         matTranspus=mat3.transpus(); //Test transpus
 
-        cout<<matTranspus;
+        g << matTranspus<<endl;
 
-        cout << "(Matrix 3)T + Matrix 2 = " << endl;
+        g << "(Matrix 3)T + Matrix 2 = \n";
         matAdd=matTranspus+mat2;
-        cout << matAdd;
-
+        g << matAdd;
     }
     else if (type=="float"){
         int nrL;
         int nrC;
         float **data;
-
-
         Matrix<float> mat; // Test Constructor fara parametrii
 
-        cin>>mat;  // Test operator <<
-        cout<< "Matrix 2 got initialized with Matrix 1 values"<<endl;
+        f >> mat;  // Test operator <<
+        g << "Matrix 2 got initialized with Matrix 1 values\n";
 
         Matrix<float> matInverse,matTranspus,matAdd,matMulti;
         Matrix<float> mat2(mat); // Test constructor copiere
-        cout<<"Matrix 1: "<<endl;
-        cout <<mat;
+        g << "\nMatrix 1: \n";
+        g << mat << endl;
 
-        cout << "Inverse of Matrix 1"<<endl;
+        g << "Inverse of Matrix 1\n";
         matInverse=mat.inverse();  // Test inverse of matrixnt
-        cout<< matInverse<<endl;
-        cout << "Matrix1 * Matrix2 = "<<endl;
+        g << matInverse << endl;
+        g << "Matrix1 * Matrix2 = \n";
         matMulti=mat*mat2;  //Test operator *
-        cout<< matMulti<<endl;
-        cout << "Matrix1 + Matrix2 ="<<endl;
+        g << matMulti << endl;
+        g << "Matrix1 + Matrix2 = \n";
         matAdd=mat+mat2;   //Test operator +
-        cout<<matAdd<< endl;
-
-        cout<< "Enter values for a new matrix of type float"<<endl;
-        cout<< "number of lines :"; cin >> nrL;
-        cout<< "number of columns:"; cin >> nrC;
+        g << matAdd << endl;
+        f >> nrL;
+        f >> nrC;
         data= new float* [nrL];
         for(int i = 0; i < nrL; i++)
             data[i] = new float [nrC];
+
         for(int i = 0; i < nrL; i++ )
-        {
-            for(int j = 0; j < nrC; j++){
-                cout<<"Matrix["<<i<<"]["<<j<<"]";
-                cin>>data[i][j];
-            }
-            cout<< endl;
-        }
+            for(int j = 0; j < nrC; j++)
+                f>>data[i][j];
+
         Matrix<float> mat3(nrL, nrC,data); // Test constructor cu parametrii
-        cout<<"Matrix 3 transpus:" <<endl;
+        g << "Matrix 3 transpus:\n";
         matTranspus=mat3.transpus(); //Test transpus
 
-        cout<<matTranspus;
+        g << matTranspus << endl;
 
-        cout << "(Matrix 3)T + Matrix 2 = " << endl;
+        g << "(Matrix 3)T + Matrix 2 = \n";
         matAdd=matTranspus+mat2;
-        cout << matAdd;
+        g << matAdd;
 
     }
-  else
-    cout<< "invalid type";
-
+    else
+        g << "invalid type";
 
 
     return 0;
