@@ -10,4 +10,5 @@ make -f makefile.win
 "#" - number between 1-5.
 
 cat output.txt (view the output)
+
 cat error.txt (view errors)
