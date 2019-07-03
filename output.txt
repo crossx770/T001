@@ -1,0 +1,38 @@
+Data type of your the matrix is int
+Matrix 2 got initialized with Matrix 1 values
+
+Matrix 1: 
+number of lines:2
+Number of columns:2
+1 2 
+3 4 
+
+Inverse of Matrix 1
+number of lines:2
+Number of columns:2
+-2 1 
+1 0 
+
+Matrix1 * Matrix2 = 
+number of lines:2
+Number of columns:2
+7 10 
+15 22 
+
+Matrix1 + Matrix2 =
+number of lines:2
+Number of columns:2
+2 4 
+6 8 
+
+Matrix 3 transpus:
+number of lines:2
+Number of columns:2
+5 7 
+6 8 
+
+(Matrix 3)T + Matrix 2 = 
+number of lines:2
+Number of columns:2
+6 9 
+9 12 
